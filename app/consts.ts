@@ -1,1 +1,0 @@
-export const secret_token = "agr-qq132cscfud5"
