@@ -125,7 +125,7 @@ export default function AnimePage() {
 
         <div className="bg-gray-800 rounded-lg p-6">
           <h1 className="text-3xl font-bold mb-4">{anime.title}</h1>
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-4 w-2/3">
                   {anime.other_titles.map((title) => (
                     <span
                       key={title}
