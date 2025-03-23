@@ -166,7 +166,7 @@ export function AnimePlayer({ videos, title }: AnimePlayerProps) {
                 "w-12 h-12 flex items-center justify-center rounded-md font-medium",
                 currentEpisode && currentEpisode.number === episodeNumber
                   ? "bg-green-500 text-white"
-                  : "bg-gray-800 text-white hover:bg-gray-700",
+                  : "bg-gray-800 text-white hover:bg-gray-600",
               )}
               onClick={() => handleEpisodeSelect(episode)}
             >

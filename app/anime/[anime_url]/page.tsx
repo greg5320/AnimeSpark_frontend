@@ -8,11 +8,12 @@ import { usePathname } from "next/navigation"
 import { Eye, Cloud, Flag, RotateCcw, Share2, Edit, QrCode, Heart, Bug, BookOpen } from "lucide-react"
 import { AnimePlayer } from "../../components/anime-player"
 import {secret_token} from "../../consts"
-
-
+import { Header } from "@/app/components/header"
+import { SearchBar } from "@/app/components/search-bar"
 
 interface AnimeData {
   title: string
+  other_titles:[]
   anime_url: string
   description: string
   poster: {
@@ -55,6 +56,7 @@ interface AnimeData {
   episodes?: number
   translation?: string[]
   voiceActing?: string[]
+  
 }
 
 export default function AnimePage() {
@@ -117,70 +119,22 @@ export default function AnimePage() {
 
   return (
     <main className="bg-gray-900 text-white pb-8">
-      <header className="bg-gray-800 py-3 mb-4">
-        <div className="container mx-auto px-4 flex items-center">
-          <div className="bg-red-400 p-2 rounded">
-            <Link href="/" className="text-black font-bold">
-              AS
-            </Link>
-          </div>
-          <div className="ml-4">
-            <Link href="/" className="text-xl font-bold">
-              Anime Spark
-            </Link>
-            {/* <div className="text-sm">
-              AS <span className="text-red-500">❤</span> anime
-            </div> */}
-          </div>
-
-          <nav className="hidden md:flex ml-auto space-x-6">
-            <Link href="/" className="text-sm font-medium hover:text-red-400">
-              ГЛАВНАЯ
-            </Link>
-            <Link href="/anime" className="text-sm font-medium hover:text-red-400">
-              АНИМЕ
-            </Link>
-            <Link href="/top-100" className="text-sm font-medium hover:text-red-400">
-              ТОП-100
-            </Link>
-            <Link href="/random" className="text-sm font-medium hover:text-red-400">
-              СЛУЧАЙНОЕ
-            </Link>
-            <Link href="/community" className="text-sm font-medium hover:text-red-400">
-              СООБЩЕСТВО
-            </Link>
-          </nav>
-        </div>
-      </header>
-
+      <Header/>
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="relative flex-1">
-            <input
-              type="text"
-              placeholder="НАЙТИ АНИМЕ ПО НАЗВАНИЮ"
-              className="w-full bg-gray-800 text-white rounded-md px-4 py-2 pr-10"
-            />
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
-          </div>
-          <button className="bg-gray-800 text-white rounded-md px-4 py-2 flex items-center gap-2 whitespace-nowrap">
-            <span>⚙️</span>
-            РАСКРЫТЬ ФИЛЬТР
-          </button>
-        </div>
+        <SearchBar/>
 
         <div className="bg-gray-800 rounded-lg p-6">
           <h1 className="text-3xl font-bold mb-4">{anime.title}</h1>
-
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="bg-gray-700 px-3 py-1 rounded-full text-sm">{anime.anime_url}</span>
-            {/* Японское название может отсутствовать в API, поэтому проверяем */}
-            {anime.anime_url && (
-              <span className="bg-gray-700 px-3 py-1 rounded-full text-sm">
-                {/* Здесь должно быть японское название из API */}
-              </span>
-            )}
-          </div>
+                  {anime.other_titles.map((title) => (
+                    <span
+                      key={title}
+                      className="bg-gray-700 px-3 py-1 rounded-full text-sm"
+                    >
+                      {title}
+                    </span>
+                  ))}
+                </div>
 
           <div className="flex items-center gap-2 mb-6">
             <span className="text-yellow-500 text-2xl">★</span>
@@ -224,11 +178,11 @@ export default function AnimePage() {
                   className="w-full rounded-md object-cover"
                   priority
                 />
-                {topPosition && (
+                {/* {topPosition && (
                   <div className="absolute bottom-0 left-0 bg-purple-700 text-white px-2 py-1 text-sm">
                     {topPosition} МЕСТО В ТОП-100 СЕРИАЛОВ
                   </div>
-                )}
+                )} */}
               </div>
 
               <div className="flex justify-between my-4">
@@ -307,9 +261,9 @@ export default function AnimePage() {
 
               <p className="text-gray-300 mb-6 text-sm">{anime.description}</p>
 
-              <button className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2">
+              {/* <button className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2">
                 <span>▼</span> Порядок просмотра
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

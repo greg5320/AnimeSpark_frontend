@@ -3,7 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {secret_token} from "./consts"
+import { secret_token } from "./consts"
+import { Header } from "@/app/components/header"
+import { SearchBar } from "@/app/components/search-bar"
 
 interface Anime {
   title: string;
@@ -46,34 +48,10 @@ export default function Home() {
 
   return (
     <main>
-      <header className="header">
-        <div className="container">
-          <div className="flex items-center">
-            <div className="header-logo">
-              <Link href="/" className="text-black">
-                AS
-              </Link>
-            </div>
-            <div className="ml-4">
-              <Link href="/" className="text-xl font-bold">
-                Anime Spark
-              </Link>
-              {/* <div className="text-sm">
-                AS <span className="text-red-500">❤</span> anime
-              </div> */}
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <div className="container">
-        <div className="flex flex-col md:flex-row gap-4 my-4">
-          <input type="text" placeholder="НАЙТИ АНИМЕ ПО НАЗВАНИЮ" className="w-full bg-gray-800 text-white rounded-md px-4 py-2 pr-10" />
-          <button className="bg-gray-800 text-white rounded-md px-4 py-2 flex items-center gap-2 whitespace-nowrap">
-            <span>⚙️</span>
-            РАСКРЫТЬ ФИЛЬТР
-          </button>
-        </div>
+        <SearchBar/>
 
         <h1 className="text-2xl font-bold mb-6">Добро пожаловать на Anime Spark</h1>
 
